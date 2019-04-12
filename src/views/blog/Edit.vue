@@ -9,7 +9,13 @@
                     <el-input v-model="form.description" type="textarea"></el-input>
                 </el-form-item>
                 <el-form-item label="博客正文" prop="content">
-                    <mavon-editor @imgAdd="imgAdd" style="max-height: 500px" ref="md" v-model="form.content" :subfield="false" :toolbars="mavonEditorToolbars"
+                    <mavon-editor 
+                        @imgAdd="imgAdd" 
+                        style="max-height: 500px" 
+                        ref="md" 
+                        v-model="form.content" 
+                        :subfield="false" 
+                        :toolbars="mavonEditorToolbars"
                     />
                 </el-form-item>
                 <el-form-item>
@@ -76,6 +82,7 @@
                     aligncenter: true,
                     alignright: true,
                     preview: true,
+                    subfield:true,
                 },
             }
         },

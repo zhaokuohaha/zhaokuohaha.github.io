@@ -16,7 +16,7 @@
             <a :href="'https://github.com/'+githubUsername" class="btn" target="_blank">GitHub主页</a>
             <a href="https://github.com/GitHub-Laziji/vblog" class="btn" target="_blank" v-if="!mini">博客源码</a>
         </section>
-        <div style="position:relative;  z-index:2;margin: auto;margin-top:-30px;width:64rem;">
+        <div style="position:relative;  z-index:2;margin: auto;margin-top:-30px;max-width:64rem;">
             <el-card shadow="never" :body-style="{ padding: '0px' }">
                 <el-row>
                     <el-col :span="10">
@@ -87,10 +87,10 @@
         </div>
         <section class="main-content">
             <el-row>
-                <el-col :span="6" style="padding-right:10px">
+                <el-col :span="4" style="padding-right:10px">
                     <sidebar></sidebar>
                 </el-col>
-                <el-col :span="18" style="padding-left:10px">
+                <el-col :span="20" style="padding-left:10px">
                     <app-main></app-main>
                 </el-col>
             </el-row>
@@ -322,7 +322,7 @@
     }
 
     .main-content {
-        max-width: 64rem;
+        max-width: 96rem;
         padding: 30px 0px 30px 0px;
         margin: 0 auto;
         font-size: 1.1rem;
