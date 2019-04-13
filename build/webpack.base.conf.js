@@ -24,6 +24,12 @@ module.exports = {
     entry: {
         app: './src/main.js'
     },
+    externals: {
+        "vue":"Vue",
+        "element-ui": "ELEMENT",
+        // "mavon-editor":"MavonEditor",
+        "vant":"vant"
+    },
     output: {
         path: config.build.assetsRoot,
         filename: '[name].js',
