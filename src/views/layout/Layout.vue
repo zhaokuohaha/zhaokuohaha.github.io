@@ -97,7 +97,7 @@
 
         </section>
         <section class="foot">
-            <foot></foot>
+            <foot :user="githubUsername"></foot>
         </section>
 
 

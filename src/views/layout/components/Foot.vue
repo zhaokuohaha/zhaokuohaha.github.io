@@ -3,7 +3,7 @@
 		<el-row>
 			<el-col :span="10">
 				<div>
-					© 2018 GitHub-zhaokuohaha&emsp;&emsp;
+					© 2018 GitHub-{{user}}&emsp;&emsp;
 					<a href="https://github.com/GitHub-Laziji/vblog" target="_blank">VBlog</a>
 				</div>
 			</el-col>
@@ -24,6 +24,7 @@
 </template>
 <script>
 	export default {
+		props:['user'],
 		data() {
 			return {
 
