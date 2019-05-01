@@ -4,11 +4,16 @@
     "blogDescribe": "欢迎来到的个人博客。",
     "htmlTitle": "OldZeng的博客",
     "fontColor": "#ffffff",
-    "useBackgroundImage": false,
+    "useBackgroundImage": true,
     "backgroundColorLeft": "#2690F9",
     "backgroundColorRight": "#FC2D2D",
-    "audioUrl": "https://i.y.qq.com/v8/playsong.html?songid=104675137&source=yqq#wechat_redirect",
     "mini": false,
     "webSites":[
-    ]
+    ],
+    "gitment":{
+        "owner": "zhaokuohaha",
+        "repo": "zhaokuohaha.github.io",
+        "clientId": "660480b0001f95f151e3",
+        "clientSecret": "b6efbe145098c5e4d33e342c2342457dcc003b6b"
+    }
 }

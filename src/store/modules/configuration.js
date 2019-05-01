@@ -12,7 +12,8 @@ const configuration = {
         audioUrl: "",
         mini: false,
         audioAutoPlay:false,
-        webSites:[]
+        webSites:[],
+        gitment:{}
     },
 
     mutations: {
@@ -41,6 +42,7 @@ const configuration = {
             state.audioAutoPlay = configuration["audioAutoPlay"] || false
 
             state.webSites = configuration["webSites"] || []
+            state.gitment = configuration['gitment'] || {}
         }
     },
 

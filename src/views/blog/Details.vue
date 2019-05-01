@@ -22,11 +22,27 @@
             <div style="font-size: 1.1rem;line-height: 1.5;color: #303133;border-bottom: 1px solid #E4E7ED;padding: 5px 0px 5px 0px">
                 <pre style="font-family: '微软雅黑'">{{blog.description}}</pre>
             </div>
-            <div v-html="blog.content" class="markdown-body" style="padding-top: 20px"></div>
+            <div v-html="blog.content" class="markdown-body" style="padding-top: 20px">
+            </div>
+            <div class="comment">
+                <div id="container"></div>
+            </div>
         </el-card>
     </div>
 </template>
 <script>
+    function renderComment(conf) {
+        var gitment = new Gitment({
+            id: location.hash.split('/').slice(-1)[0],
+            owner: conf.owner,
+            repo: conf.repo,
+            oauth: {
+                client_id: conf.clientId,
+                client_secret: conf.clientSecret,
+            },
+        })
+        gitment.render('container')
+    }
     import { mapGetters } from 'vuex'
     import GistApi from '@/api/gist'
     export default {
@@ -44,6 +60,7 @@
         computed: {
             ...mapGetters([
                 'token',
+                'gitment'
             ])
         },
         mounted() {
@@ -62,8 +79,9 @@
                     break
                 }
             }).then(() => this.loading = false)
-
-
+            if(this.gitment){
+                renderComment(this.gitment)
+            }
         },
         methods: {
             edit() {

@@ -11,7 +11,6 @@
                 <el-form-item label="博客正文" prop="content">
                     <mavon-editor 
                         @imgAdd="imgAdd" 
-                        style="max-height: 500px" 
                         ref="md" 
                         v-model="form.content" 
                         :subfield="false" 
@@ -83,6 +82,7 @@
                     alignright: true,
                     preview: true,
                     subfield:true,
+                    fullscreen: true, // 全屏编辑 
                 },
             }
         },
