@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="page-header" :style="'background-image: linear-gradient(120deg, '+backgroundColorLeft+', '+backgroundColorRight+');color: '+fontColor+';'">
+        <section class="page-header" :style="getBgStyle()">
             <div style="position:absolute; top:20px; right:20px; z-index:2;">
                 <el-tooltip effect="dark" :content="fullButton.full?'退出':'全屏'" placement="bottom-end">
                     <el-button @click="full" :icon="fullButton.full?'el-icon-close':'el-icon-rank'" circle></el-button>
@@ -14,7 +14,7 @@
             <h1 class="project-name">{{blogTitle}}</h1>
             <h2 class="project-tagline">{{blogDescribe}}</h2>
             <a :href="'https://github.com/'+githubUsername" class="btn" target="_blank">GitHub主页</a>
-            <a href="https://github.com/GitHub-Laziji/vblog" class="btn" target="_blank" v-if="!mini">博客源码</a>
+            <!-- <a href="https://github.com/GitHub-Laziji/vblog" class="btn" target="_blank" v-if="!mini">博客源码</a> -->
         </section>
         <div style="position:relative;  z-index:2;margin: auto;margin-top:-30px;max-width:64rem;">
             <el-card shadow="never" :body-style="{ padding: '0px' }">
@@ -256,6 +256,11 @@
                     this.music.volume = 0
                 }
                 this.$refs.music.volume = this.music.volume / 100
+            },
+            getBgStyle(){
+                console.log('userBgImage: ' + this.useBackgroundImage)
+                if(!this.useBackgroundImage)
+                    return `background-image: linear-gradient(120deg,${this.backgroundColorLeft},${this.backgroundColorRight});color:${this.fontColor};`
             }
         }
     }
@@ -266,8 +271,10 @@
         padding: 5rem 6rem;
         color: #fff;
         text-align: center;
-        background-color: #159957;
-        background-image: linear-gradient(120deg, #155799, #159957);
+        background-image: url('../../assets/banner.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     .project-name {
@@ -322,7 +329,7 @@
     }
 
     .main-content {
-        max-width: 96rem;
+        max-width: 64rem;
         padding: 30px 0px 30px 0px;
         margin: 0 auto;
         font-size: 1.1rem;
