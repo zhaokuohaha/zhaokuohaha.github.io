@@ -16,75 +16,6 @@
             <a :href="'https://github.com/'+githubUsername" class="btn" target="_blank">GitHub主页</a>
             <!-- <a href="https://github.com/GitHub-Laziji/vblog" class="btn" target="_blank" v-if="!mini">博客源码</a> -->
         </section>
-        <div style="position:relative;  z-index:2;margin: auto;margin-top:-30px;max-width:64rem;">
-            <el-card shadow="never" :body-style="{ padding: '0px' }">
-                <el-row>
-                    <el-col :span="10">
-                        <el-menu @select="selectTopbar" :default-active="topbar.active" mode="horizontal" menu-trigger="click">
-                            <el-submenu index="#more">
-                                <template slot="title">了解博主</template>
-                                <el-menu-item index="#githubHome">github主页</el-menu-item>
-                                <el-menu-item index="#blog">其他博客</el-menu-item>
-                            </el-submenu>
-                            <el-submenu index="#webSites" v-if="webSites.length>0">
-                                <template slot="title">其他网站</template>
-                                <el-menu-item :index="'#webSites-'+index" v-for="(item,index) in webSites" :key="'#webSites'+index">{{item.name}}</el-menu-item>
-                            </el-submenu>
-                        </el-menu>
-                    </el-col>
-                    <el-col :span="8" style="text-align: center;padding: 12px 0px 0px 10px">
-                        <el-row>
-                            <el-col :span="4">
-                                <el-popover placement="top" trigger="hover">
-                                    <div style="text-align: center">
-                                        <el-progress color="#67C23A" type="circle" :percentage="music.volume"></el-progress>
-                                        <br>
-                                        <el-button @click="changeVolume(-10)" icon="el-icon-minus" circle></el-button>
-                                        <el-button @click="changeVolume(10)" icon="el-icon-plus" circle></el-button>
-                                    </div>
-
-                                    <el-button @click="play" id="play" slot="reference" :icon="music.isPlay?'el-icon-refresh':'el-icon-caret-right'" circle></el-button>
-                                </el-popover>
-                            </el-col>
-                            <el-col :span="14" style="padding-left: 20px">
-                                <el-slider @change="changeTime" :format-tooltip="$util.formatTime" :max="music.maxTime" v-model="music.currentTime" style="width: 100%;"></el-slider>
-                            </el-col>
-                            <el-col :span="6" style="padding: 9px 0px 0px 10px;color:#909399;font-size: 13px">
-                                {{$util.formatTime(music.currentTime)}}/{{$util.formatTime(music.maxTime)}}
-                            </el-col>
-                        </el-row>
-
-                        <audio ref="music" loop autoplay v-if="audioAutoPlay">
-                            <source :src="audioUrl" type="audio/mpeg">
-                        </audio>
-                        <audio ref="music" loop v-else>
-                            <source :src="audioUrl" type="audio/mpeg">
-                        </audio>
-                    </el-col>
-                    <el-col :span="4" style="text-align: right;">
-                        <div style="font-size: 20px;color:#606266;margin-top: 5px">
-                            <b>{{githubUsername}}</b>
-                        </div>
-                        <div style="color:#606266;">
-                            <i class="el-icon-location"></i>&nbsp;{{location?location:'未填写地址'}}
-                            <br>
-                        </div>
-                    </el-col>
-                    <el-col :span="2" style="text-align: center;">
-                        <img v-popover:bigAvatar :src="avatarUrl" style="margin-top: 4px;margin-right: 10px;width:52px; height:52px; border-radius:5px; border: 1px solid #EBEEF5"
-                        />
-                        <el-popover ref="bigAvatar" placement="top-start" :title="githubUsername" width="200" trigger="hover">
-                            <i class="el-icon-star-on"></i>&emsp;{{name}}
-                            <br>
-                            <i class="el-icon-location"></i>&emsp;{{location}}
-                            <br>
-                            <img :src="avatarUrl" style="width: 200px;height: 200px;">
-                        </el-popover>
-                    </el-col>
-                </el-row>
-
-            </el-card>
-        </div>
         <section class="main-content">
             <el-row>
                 <el-col :span="4" style="padding-right:10px">
@@ -93,14 +24,14 @@
                 <el-col :span="20" style="padding-left:10px">
                     <app-main></app-main>
                 </el-col>
+                <div class="right-fixed">
+                    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 :src="'//music.163.com/outchain/player?type=0&id='+wyPlayListId+'&auto=0&height=430'"></iframe>
+                </div>
             </el-row>
-
         </section>
         <section class="foot">
             <foot :user="githubUsername"></foot>
         </section>
-
-
     </div>
 </template>
 <script>
@@ -149,7 +80,8 @@
                 'followersTotal',
                 'followingTotal',
                 'audioAutoPlay',
-                'webSites'
+                'webSites',
+                'wyPlayListId'
             ])
         },
         watch: {
@@ -221,41 +153,6 @@
                     this.$util.fullExit()
                     this.fullButton.full = false
                 }
-            },
-            listenMusic() {
-                if (!this.$refs.music) {
-                    return
-                }
-                if (this.$refs.music.readyState) {
-                    this.music.maxTime = this.$refs.music.duration
-                }
-                this.music.isPlay = !this.$refs.music.paused
-                this.music.currentTime = this.$refs.music.currentTime
-            },
-            play() {
-                if (this.$refs.music.paused) {
-                    this.$refs.music.play()
-                } else {
-                    this.$refs.music.pause()
-                }
-                this.music.isPlay = !this.$refs.music.paused
-                this.$nextTick(() => {
-                    document.getElementById('play').blur()
-                })
-
-            },
-            changeTime(time) {
-                this.$refs.music.currentTime = time
-            },
-            changeVolume(v) {
-                this.music.volume += v
-                if (this.music.volume > 100) {
-                    this.music.volume = 100
-                }
-                if (this.music.volume < 0) {
-                    this.music.volume = 0
-                }
-                this.$refs.music.volume = this.music.volume / 100
             },
             getBgStyle(){
                 console.log('userBgImage: ' + this.useBackgroundImage)
@@ -335,6 +232,7 @@
         font-size: 1.1rem;
         word-wrap: break-word;
         min-height: 800px;
+        margin-right: 350px;
     }
 
     .foot {
@@ -343,5 +241,12 @@
         font-size: 12px !important;
         color: #586069 !important;
         word-wrap: break-word;
+    }
+
+    .right-fixed{
+        float: left;
+        position: absolute;
+        top: -10px;
+        right: -330px;
     }
 </style>

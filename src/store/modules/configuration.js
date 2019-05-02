@@ -13,7 +13,8 @@ const configuration = {
         mini: false,
         audioAutoPlay:false,
         webSites:[],
-        gitment:{}
+        gitment:{},
+        wyPlayListId:0
     },
 
     mutations: {
@@ -43,6 +44,7 @@ const configuration = {
 
             state.webSites = configuration["webSites"] || []
             state.gitment = configuration['gitment'] || {}
+            state.wyPlayListId = configuration['wyPlayListId']
         }
     },
 

@@ -18,6 +18,7 @@ const getters = {
     blog: state => state.user.blog,
     followersTotal: state => state.user.followers,
     followingTotal: state => state.user.following,
-    gitment: state => state.configuration.gitment
+    gitment: state => state.configuration.gitment,
+    wyPlayListId: state => state.configuration.wyPlayListId
 }
 export default getters
