@@ -225,13 +225,13 @@
     }
 
     .main-content {
-        max-width: 64rem;
+        /* max-width: 80rem; */
         padding: 30px 0px 30px 0px;
         margin: 0 auto;
         font-size: 1.1rem;
         word-wrap: break-word;
         min-height: 800px;
-        margin-right: 350px;
+        margin: 0 400px 0 120px;
     }
 
     .foot {

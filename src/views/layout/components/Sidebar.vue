@@ -2,10 +2,11 @@
     <div>
         <el-card shadow="never">
             <el-menu :default-active="active" @select="onSelect">
-                <el-menu-item v-for="item in constantRouterMap" v-if="item.meta&&item.meta.type=='user'&&(token||!item.meta.LoginRequired)&&(!mini||!item.meta.mini)"
-                    :key="item.path" :index="item.path">
-                    <i :class="item.meta.icon"></i>
-                    <span slot="title">{{item.meta.title}}</span>
+                <el-menu-item v-for="item in constantRouterMap" :key="item.path" :index="item.path">
+                    <template v-if="item.meta&&item.meta.type=='user'&&(token||!item.meta.LoginRequired)&&(!mini||!item.meta.mini)">
+                        <i :class="item.meta.icon"></i>
+                        <span slot="title">{{item.meta.title}}</span>
+                    </template>
                 </el-menu-item>
             </el-menu>
         </el-card>

@@ -129,13 +129,13 @@ export const constantRouterMap = [
         meta: {
             type: "user",
             icon: 'el-icon-document',
-            title: 'README.md'
+            title: 'README'
         },
         children: [
             {
                 path: 'main',
                 component: ReadmeMain,
-                meta: { title: 'README.md' }
+                meta: { title: 'README' }
             }
         ]
     },
