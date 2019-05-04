@@ -155,7 +155,6 @@
                 }
             },
             getBgStyle(){
-                console.log('userBgImage: ' + this.useBackgroundImage)
                 if(!this.useBackgroundImage)
                     return `background-image: linear-gradient(120deg,${this.backgroundColorLeft},${this.backgroundColorRight});color:${this.fontColor};`
             }

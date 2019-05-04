@@ -31,7 +31,7 @@
     </div>
 </template>
 <script>
-    function renderComment(conf) {
+    function renderComment(conf, title) {
         var gitment = new Gitment({
             id: location.hash.split('/').slice(-1)[0],
             owner: conf.owner,
@@ -40,6 +40,7 @@
                 client_id: conf.clientId,
                 client_secret: conf.clientSecret,
             },
+            title: title,
         })
         gitment.render('container')
     }
@@ -78,10 +79,14 @@
                     // console.log(JSON.stringify(this.blog))
                     break
                 }
-            }).then(() => this.loading = false)
-            if(this.gitment){
-                renderComment(this.gitment)
-            }
+            }).then(() => {
+                this.loading = false
+                let title = this.blog['title']
+                document.title = title
+                if(this.gitment){
+                    renderComment(this.gitment, title)
+                }
+            })
         },
         methods: {
             edit() {

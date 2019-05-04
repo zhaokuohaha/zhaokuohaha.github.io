@@ -11,3 +11,6 @@
 ## 其他配置信息:
 * Gitment 配置详见: https://imsun.net/posts/gitment-introduction/  第一步，注册好 Auth Application 后修改 配置文件即可
 * 网易云音乐歌单配置： 登陆 web 版 -> 右上角头像 -> 我的主页 -> 点对应的歌单 -> 复制地址栏上的 id
+
+
+## 源码在dev分支
