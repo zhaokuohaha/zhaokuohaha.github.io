@@ -14,14 +14,13 @@
             <h1 class="project-name">{{blogTitle}}</h1>
             <h2 class="project-tagline">{{blogDescribe}}</h2>
             <a :href="'https://github.com/'+githubUsername" class="btn" target="_blank">GitHub主页</a>
-            <!-- <a href="https://github.com/GitHub-Laziji/vblog" class="btn" target="_blank" v-if="!mini">博客源码</a> -->
         </section>
         <section class="main-content">
             <el-row>
-                <el-col :span="4" style="padding-right:10px">
+                <div class="left-fixed">
                     <sidebar></sidebar>
-                </el-col>
-                <el-col :span="20" style="padding-left:10px">
+                </div>
+                <el-col :span="24" style="padding-left:10px">
                     <app-main></app-main>
                 </el-col>
                 <div class="right-fixed">
@@ -231,7 +230,8 @@
         font-size: 1.1rem;
         word-wrap: break-word;
         min-height: 800px;
-        margin: 0 400px 0 120px;
+        margin: 0 400px 0 300px;
+        /* padding-left: 300px; */
     }
 
     .foot {
@@ -247,5 +247,12 @@
         position: absolute;
         top: -10px;
         right: -330px;
+    }
+
+    .left-fixed {
+        position: absolute;
+        left: -210px;
+        padding-right: 10px; 
+        width: 200px;
     }
 </style>
