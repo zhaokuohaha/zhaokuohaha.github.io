@@ -14,9 +14,9 @@
                         <el-row>
                             <el-col :span="16">
                                 <span>
-                                    <a style="text-decoration:none;cursor:pointer" @click="goDetails(item.id)">
+                                   <router-link class="plain-a" :to="'/user/blog/details/'+item.id">
                                         <i class="el-icon-edit-outline"></i>&nbsp;&nbsp; {{item.title}}
-                                    </a>
+                                   </router-link>
                                 </span>
                             </el-col>
                             <el-col :span="8">
@@ -141,9 +141,6 @@
                     return
                 }
                 this.$router.push('/user/blog/add')
-            },
-            goDetails(id) {
-                this.$router.push("/user/blog/details/" + id)
             }
         }
     }

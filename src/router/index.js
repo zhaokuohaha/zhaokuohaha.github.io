@@ -255,6 +255,7 @@ export const constantRouterMap = [
 
 const router = new Router({
     routes: constantRouterMap,
+    mode: "history",
     scrollBehavior(to, from, savedPosition) {
         if (to.meta.scrollTop) {
             return { x: 0, y: 0 }

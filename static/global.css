@@ -26,3 +26,6 @@
 .markdown-body ul ul ul {
     list-style-type: square !important;
 }
+.plain-a{
+    text-decoration: none;
+}
