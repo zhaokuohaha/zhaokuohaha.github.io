@@ -122,6 +122,9 @@ const webpackConfig = merge(baseWebpackConfig, {
             },{
                 from: path.resolve(__dirname, '../README.md'),
                 to: './'
+            },{
+                from: path.resolve(__dirname, '../404.html'),
+                to: './'
             }
         ])
     ]
