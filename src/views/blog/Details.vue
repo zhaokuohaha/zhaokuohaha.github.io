@@ -33,14 +33,14 @@
 <script>
     function renderComment(conf, title) {
         var gitment = new Gitment({
-            id: location.hash.split('/').slice(-1)[0],
+            id: location.href.split('/').slice(-1)[0],
             owner: conf.owner,
             repo: conf.repo,
             oauth: {
                 client_id: conf.clientId,
                 client_secret: conf.clientSecret,
             },
-            title: title,
+            title: title
         })
         gitment.render('container')
     }
