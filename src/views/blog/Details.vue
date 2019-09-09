@@ -15,14 +15,18 @@
                     </el-col>
                 </el-row>
             </div>
-            <div style="font-size: 0.9rem;line-height: 1.5;color: #606c71;">
-                发布 {{blog.createTime}}
-                <br> 更新 {{blog.updateTime}}
+            <div style="font-size: 0.8rem;line-height: 1.5; color: #75878a">
+                原文链接: <a :href="blogurl">{{blogurl}}</a> <br>
+                GIST链接: <a :href="gisturl">{{gisturl}}</a>
             </div>
-            <div style="font-size: 1.1rem;line-height: 1.5;color: #303133;border-bottom: 1px solid #E4E7ED;padding: 5px 0px 5px 0px">
+            <div style="font-size: 0.8rem;line-height: 1.5;color: #f47983;border-bottom: 1px solid #E4E7ED;padding: 5px 0px 5px 0px">
                 <pre style="font-family: '微软雅黑'">{{blog.description}}</pre>
             </div>
             <div v-html="blog.content" class="markdown-body" style="padding-top: 20px">
+            </div>
+            <div style="font-size: 0.7rem;line-height: 1.5; margin: 16px 0; color: #f47983;border-top: 2px solid #dfe2e5;padding: 5px 0px 5px 0px">
+                发布 {{blog.createTime}} <br />
+                更新 {{blog.updateTime}}
             </div>
             <div class="comment">
                 <div id="container"></div>
@@ -61,13 +65,17 @@
         computed: {
             ...mapGetters([
                 'token',
-                'gitment'
+                'gitment',
+                'githubUsername'
             ])
         },
         mounted() {
             this.loading = true
             this.blog.id = this.$route.params.id
-            // console.log(this.$route.params.id)
+            this.blogurl = window.location
+            this.gisturl = `https://gist.github.com/${this.githubUsername}/${this.blog['id']}`
+
+            console.log(this.$route.params)
             GistApi.single(this.blog.id).then((response) => {
                 let result = response.data
                 for (let key in result.files) {

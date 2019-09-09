@@ -15,12 +15,8 @@
                     </el-col>
                 </el-row>
             </div>
-            <div style="font-size: 0.9rem;line-height: 1.5;color: #606c71;">
-                发布 {{project.createTime}}
-                <br> 更新 {{project.updateTime}}
-            </div>
-            <div style="font-size: 1.1rem;line-height: 1.5;color: #303133;padding: 20px 0px 0px 0px">
-                {{project.description}}
+            <div style="font-size: 0.8rem;line-height: 1.5;color: #f47983;border-bottom: 1px solid #E4E7ED;padding: 5px 0px 5px 0px">
+                <pre style="font-family: '微软雅黑'">{{project.description}}</pre>
             </div>
             <div style="font-size: 1.1rem;color: #303133;padding: 15px 0px 15px 0px;border-bottom: 1px solid #E4E7ED;">
                 <el-row>
@@ -53,6 +49,10 @@
                 <font style="font-size: 30px;color:#dddddd ">
                     <b>还没有介绍 (╯°Д°)╯︵ ┻━┻</b>
                 </font>
+            </div>
+             <div style="font-size: 0.7rem;line-height: 1.5; margin: 16px 0; color: #f47983;border-top: 2px solid #dfe2e5;padding: 5px 0px 5px 0px">
+                发布 {{project.createTime}} <br />
+                更新 {{project.updateTime}}
             </div>
         </el-card>
     </div>
