@@ -15,7 +15,9 @@ export default {
     },
     create: function (form) {
         let files = {}
-        files[form.title] = { content: form.content }
+        if(!form.title.endsWith('.md'))
+            form.title += '.md'
+        files[form.title] = { content: form.content}
         return request({
             url: '/gists',
             method: 'post',
